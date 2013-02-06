@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Workflowy Roll-Up Calculator</title>
+		<style type="text/css">
+			.children {
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Workflowy Roll-Up Calculator</h1>
+
+		<p><a href="#" id="toggleButton">Toggle Roll-Up</a></p>
+		<p>Bookmarklet (drag to bookmarks bar): 
+		<a href="javascript:(function(){var%20valueFromString=function(str){var%20r=str.match(/\[(\d+)\]$/);if(r){return%20parseInt(r[1],10);}else{return%200;}};var%20nodeValue=function(el){var%20value=$(el).attr('data-node-value');if(value===undefined){var%20name=$(el).children('.name').children('.content').text();var%20myVal=valueFromString(name);var%20childVals=0;$(el).children('.children').children('.project').each(function(idx,childEl){childVals+=nodeValue(childEl);});value=myVal+childVals;$(el).attr('data-node-value',value);}return%20value;};var%20addRollups=function(){$('.project').each(function(idx,el){val=nodeValue(el);if(val){$(el).addClass('js-changed-name');$name=$(el).children('.name').children('.content');$(el).attr('data-original-name',$name.text());$name.append(%22%20%3Cem%3E%26mdash;%20%22+nodeValue(el)+%22%3C/em%3E%22);}});};var%20removeRollups=function(){$('.js-changed-name').each(function(idx,el){$(el).children('.name').children('.content').text($(el).attr('data-original-name'));$(el).removeClass('js-changed-name');});};var%20toggleRollups=function(){if(window.rollupsToggled){removeRollups();window.rollupsToggled=0;}else{addRollups();window.rollupsToggled=1;}};toggleRollups();$('%23toggleButton').click(toggleRollups);})();">
+			Workflowy Roll-Up</a></p>
+
+		<div class="project">
+			<div class="name">
+				<div class="content">Name of the node [10]</div>
+			</div>
+			<div class="children">
+				<div class="project">
+					<div class="name">
+						<div class="content">Name of the first child node</div>
+					</div>
+				</div>
+				<div class="project">
+					<div class="name">
+						<div class="content">Name of the first child node [3]</div>
+					</div>
+				</div>
+				<div class="project">
+					<div class="name">
+						<div class="content">Name of the first child node [6]</div>
+					</div>
+					<div class="children">
+						<div class="project">
+							<div class="name">
+								<div class="content">Name of the first child node [1]</div>
+							</div>
+						</div>
+						<div class="project">
+							<div class="name">
+								<div class="content">Name of the first child node [10]</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="project">
+			<div class="name">
+				<div class="content">Name of the node [8]</div>
+			</div>
+			<div class="children">
+				<div class="project">
+					<div class="name">
+						<div class="content">Name of the first child node [10]</div>
+					</div>
+				</div>
+				<div class="project">
+					<div class="name">
+						<div class="content">Name of the first child node [10]</div>
+					</div>
+				</div>
+				<div class="project">
+					<div class="name">
+						<div class="content">Name of the first child node [10]</div>
+					</div>
+					<div class="children">
+						<div class="project">
+							<div class="name">
+								<div class="content">Name of the first child node [10]</div>
+							</div>
+						</div>
+						<div class="project">
+							<div class="name">
+								<div class="content">Name of the first child node [10]</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="workflowy-rollup.js"></script>
+	</body>
+</html>
