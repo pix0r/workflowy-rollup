@@ -5,7 +5,8 @@
     "description": "Simple bookmarklet that adds a 'sum' to nodes in a Workflowy document, allowing for easy roll-up calculations of hierarchical data.",
     "dependencies": {
         "bookmarkletify": "*",
-        "mu2": "*"
+        "mu2": "*",
+        "optimist": "*"
     },
     "license": "MIT",
     "engines": {
