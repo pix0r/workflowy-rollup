@@ -28,7 +28,7 @@
                 $(el).addClass('js-changed-name');
                 $name = $(el).children('.name').children('.content');
                 $(el).attr('data-original-name', $name.text());
-                $name.append(" <em>&mdash; " + nodeValue(el) + "</em>");
+                $name.append(" &mdash; " + nodeValue(el));
             }
         });
     };
